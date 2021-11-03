@@ -9,25 +9,6 @@ class Movie {
     const POSTER_PATH = "images";
 
     /**
-     * Movie constructor.
-     * @param int $id
-     * @param string $title
-     * @param string $overview
-     * @param string $releaseDate
-     * @param float $starsRating
-     * @param string $poster
-     */
-    public function __construct(int $id, string $title, string $overview, string $releaseDate, float $starsRating, string $poster)
-    {
-        $this->id = $id;
-        $this->title = $title;
-        $this->overview = $overview;
-        $this->releaseDate = $releaseDate;
-        $this->starsRating = $starsRating;
-        $this->poster = $poster;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int

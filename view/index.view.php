@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Pel·lícules</h1>
-<?php foreach ($arrayMovies as $movie): ?>
+<?php foreach ($movies as $movie): ?>
     <a href="movie.php?id=<?= $movie->getId() ?>"><p><?= $movie->getTitle() ?></p></a>
 <?php endforeach; ?>
 </body>
