@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Nova pel·lícula</title>
-    <meta name="description" content="PHP, PHPStorm">
-    <meta name="author" content="Homer Simpson">
+    <meta name="author" content="Salvador Tarazona Samper">
 </head>
 
 <body>
@@ -36,12 +35,9 @@
                 </label>
             <?php endforeach ?>
         </div>
-
-
-
         <div>
             <label for="overview">Overview</label>
-                <textarea id="overview" name="overview"><?= $data["overview"] ?></textarea>
+            <textarea id="overview" name="overview"><?= $data["overview"] ?></textarea>
         </div>
         <div>
             <p>Poster</p>
@@ -71,11 +67,10 @@
                 <th>Rating</th>
                 <td><?= $data["rating"] ?></td>
             </tr>
-
-
-
+            <tr>
+                <td><a href="index.php"><button value="HOME" id="HOME">HOME</button></a></td>
+            </tr>
         </table>
     <?php endif ?>
 </body>
-
 </html>

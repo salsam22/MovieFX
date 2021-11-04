@@ -1,8 +1,8 @@
 <?php
-require "src/Exceptions/ValidationException.php";
-require "src/Exceptions/RequiredValidationException.php";
-require "src/Exceptions/TooShortValidationException.php";
-require "src/Exceptions/TooLongValidationException.php";
+require_once "src/Exceptions/ValidationException.php";
+require_once "src/Exceptions/RequiredValidationException.php";
+require_once "src/Exceptions/TooShortValidationException.php";
+require_once "src/Exceptions/TooLongValidationException.php";
 
 function clean(string $value) {
     $value = trim($value);

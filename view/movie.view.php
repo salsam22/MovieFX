@@ -15,6 +15,9 @@
 <?php else: ?>
     <h3><?= array_shift($errors) ?></h3>
 <?php endif; ?>
+    <p><a href="movies_edit.php?id=<?=$movie->getId()?>">Edit movie</a> || <a href="movies_delete.php?id=<?=$movie->getId()?>">Delete movie</a></p>
+    <p><a href="index.php"><button value="HOME" id="HOME">HOME</button></a></p>
+
 </body>
 
 </html>
