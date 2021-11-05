@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once "helpers.php";
 require_once 'src/Exceptions/FileUploadException.php';
 require_once 'src/Exceptions/NoUploadedFileException.php';
+require_once "src/Exceptions/TooBigFileException.php";
 require_once 'src/Movie.php';
 
 const MAX_SIZE = 1024*1000;
