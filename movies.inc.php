@@ -1,6 +1,37 @@
 <?php
-$peli1 = new Movie(0,"Shrek 1","Hace mucho tiempo, en una lejanísima ciénaga, vivía un feroz ogro llamado Shrek. De repente, un día, su soledad se ve interrumpida por una invasión de sorprendentes personajes. Hay ratoncitos ciegos en su comida, un enorme y malísimo lobo en su cama, tres cerditos sin hogar y otros seres que han sido deportados de su tierra por el malvado Lord Farquaad. Para salvar su territorio, Shrek hace un pacto con Farquaad y emprende viaje para conseguir que la bella princesa Fiona acceda a ser la novia del Lord. En tan importante misión le acompaña un divertido burro, dispuesto a hacer cualquier cosa por Shrek: todo, menos guardar silencio.","13/06/2001", 7.7, "shr1.png");
-$peli2 = new Movie(1,"Shrek 2","Cuando Shrek y la princesa Fiona regresan de su luna de miel, los padres de ella los invitan a visitar el reino de Muy Muy Lejano para celebrar la boda. Para Shrek, al que nunca abandona su fiel amigo Asno, esto constituye un gran problema. Los padres de Fiona, por su parte, no esperaban que su yerno tuviera un aspecto semejante y, mucho menos, que su hija hubiera cambiado tanto. Todo esto trastoca los planes del rey respecto al futuro del reino. Pero entonces entran en escena la maquiavélica Hada Madrina, su arrogante hijo el Príncipe Encantador y un minino muy especial: el Gato con Botas, experto cazador de ogros.","30/07/2004", 7, "shr2.jpg");
-$peli3 = new Movie(2,"Shrek Tercero","Cuando Shrek se casó con Fiona, no cayó en la cuenta de que tarde o temprano acabaría siendo rey. Así, al caer enfermo su suegro, el Rey Harold, Shrek corre el peligro de tener que abandonar su amado pantano para ocupar el trono; a menos que encuentre un heredero. Decide entonces emprender un viaje con Asno y el Gato con Botas para encontrar a Arturo, el primo de Fiona. Mientras, en Muy Muy Lejano, el Principe Encantador recluta un ejército de villanos para tomar el trono por la fuerza. Pero no cuentan con que Fiona y la Reina Lillian también han reunido su grupo de heroínas para hacerles frente...","22/06/2007", 5.9, "shr3.jpg");
 
-$arrayMovies = [$peli1, $peli2, $peli3];
+$movie = new Movie();
+$movie->setId(1);
+$movie->setTitle("Eve");
+$movie->setPoster("eve-2019.jpg");
+$movie->setReleaseDate("2019-10-19");
+$movie->setOverview("When a talented actress fails to land the role of her dreams, 
+    she becomes obsessed with the up-and-comer who gets the part.");
+$movie->setRating(2.05);
+
+$movies[] = $movie;
+
+$movie = new Movie();
+$movie->setId(2);
+$movie->setTitle("Dune");
+$movie->setPoster("dune-2021.jpg");
+$movie->setReleaseDate("2021-09-17");
+$movie->setOverview("Paul Atreides, a brilliant and gifted young man born into a great destiny beyond 
+    his understanding, must travel to the most dangerous planet in the universe to ensure the future of his 
+    family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the 
+    most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those 
+    who can conquer their fear will survive.");
+$movie->setRating(4.00);
+
+$movies[] = $movie;
+
+$movie = new Movie();
+$movie->setId(3);
+$movie->setTitle("Venom: Let There Be Carnage");
+$movie->setPoster("venom-2021.jpg");
+$movie->setReleaseDate("2021-10-15");
+$movie->setOverview("After finding a host body in investigative reporter Eddie Brock, the alien symbiote 
+    must face a new enemy, Carnage, the alter ego of serial killer Cletus Kasady.");
+$movie->setRating(3.20);
+
+$movies[] = $movie;

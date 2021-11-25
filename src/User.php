@@ -1,23 +1,17 @@
 <?php
+
 class User
 {
     private int $id;
     private string $username;
     private string $password;
+    private Plan $plan;
 
-    /**
-     * User constructor.
-     * @param int $id
-     * @param string $username
-     * @param string $password
-     * @param Plan $plan
-     */
-    public function __construct(int $id, string $username, string $password, Plan $plan)
+
+    public function __construct(int $id, string $username)
     {
         $this->id = $id;
         $this->username = $username;
-        $this->password = $password;
-        $this->plan = $plan;
     }
 
     /**
@@ -83,6 +77,37 @@ class User
     {
         $this->plan = $plan;
     }
-    private Plan $plan;
 
+    public function rate(Movie $movie, int $value): void {
+        $pdo = new PDO("mysql:host=mysql-server;dbname=movieFX;charset=utf8", "dbuser", "1234");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+        $stmt = $pdo->prepare("SELECT count(id) as count FROM rating WHERE movie_id = ?");
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt->execute([$movie->getId()]);
+        $res = $stmt->fetch();
+        $voters = $res["count"];
+
+        $currentRating = $movie->getRating();
+        $globalRating = $currentRating * $voters;
+        $newRating = ($globalRating + $value)/($voters+1);
+
+        try {
+            $pdo->beginTransaction();
+
+            $stmt = $pdo->prepare("INSERT INTO rating (user_id, movie_id, value) values (?,?,?)");
+            $stmt->execute([$this->getId(), $movie->getId(), $value]);
+
+            $stmt = $pdo->prepare("UPDATE movie set rating = ? WHERE id = ?");
+            $stmt->execute([$newRating, $movie->getId()]);
+
+            $movie->setRating($newRating);
+            $pdo->commit();
+
+        } catch (Exception $exception) {
+            $pdo->rollBack();
+            throw new Exception("Error en actualitzar la valoració");
+        }
+    }
 }

@@ -1,12 +1,16 @@
 <?php
-class Movie {
-    private int $id;
+declare(strict_types=1);
+
+class Movie
+{
+    const POSTER_PATH = "posters";
+    public int $id;
     private string $title;
     private string $overview;
     private string $releaseDate;
-    private float $starsRating;
+    private float $rating;
+    private int $voters;
     private string $poster;
-    const POSTER_PATH = "images";
 
     /**
      * @return int
@@ -75,17 +79,17 @@ class Movie {
     /**
      * @return float
      */
-    public function getStarsRating(): float
+    public function getRating(): float
     {
-        return $this->starsRating;
+        return $this->rating;
     }
 
     /**
-     * @param float $starsRating
+     * @param float $rating
      */
-    public function setStarsRating(float $starsRating): void
+    public function setRating(float $rating): void
     {
-        $this->starsRating = $starsRating;
+        $this->rating = $rating;
     }
 
     /**
@@ -104,5 +108,20 @@ class Movie {
         $this->poster = $poster;
     }
 
+    /**
+     * @return int
+     */
+    public function getVoters(): int
+    {
+        return $this->voters;
+    }
+
+    /**
+     * @param int $voters
+     */
+    public function setVoters(int $voters): void
+    {
+        $this->voters = $voters;
+    }
 
 }

@@ -8,21 +8,6 @@ class Plan
     private int $screens;
 
     /**
-     * Plan constructor.
-     * @param int $id
-     * @param string $name
-     * @param string $quality
-     * @param int $screens
-     */
-    public function __construct(int $id, string $name, string $quality, int $screens)
-    {
-        $this->id = $id;
-        $this->name = $name;
-        $this->quality = $quality;
-        $this->screens = $screens;
-    }
-
-    /**
      * @return int
      */
     public function getId(): int
@@ -85,5 +70,4 @@ class Plan
     {
         $this->screens = $screens;
     }
-
 }

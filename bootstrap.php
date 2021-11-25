@@ -1,36 +1,8 @@
 <?php
 
-declare(strict_types=1);
+require_once "src/Registry.php";
 
-namespace DesignPatterns\Structural\Registry;
+$pdo = new PDO("mysql:host=mysql-server;dbname=movieFX;charset=utf8;user=root;password=secret");
+$pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-use InvalidArgumentException;
-
-abstract class Registry
-{
-    public const LOGGER = "logger";
-
-    private static array $services = [];
-
-    private static array $allowedKeys = [
-        self::LOGGER,
-    ];
-
-    public static function set(string $key, Service $value)
-    {
-        if (!in_array($key, self::$allowedKeys)) {
-            throw new InvalidArgumentException("Invalid key given");
-        }
-
-        self::$services[$key] = $value;
-    }
-
-    public static function get(string $key): Service
-    {
-        if (!in_array($key, self::$allowedKeys) || !isset(self::$services[$key])) {
-            throw new InvalidArgumentException("Invalid key given");
-        }
-
-        return self::$services[$key];
-    }
-}
+Registry::set("PDO", $pdo);
