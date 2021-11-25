@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdeba43c-6b82-4f11-8db0-edf8efda36e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FlashMessage.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fdeba43c-6b82-4f11-8db0-edf8efda36e9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +44,7 @@
       <updated>1637140281674</updated>
       <workItem from="1637140285176" duration="1182000" />
       <workItem from="1637778626331" duration="1379000" />
+      <workItem from="1637792165915" duration="70000" />
     </task>
     <servers />
   </component>
