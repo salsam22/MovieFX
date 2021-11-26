@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 // es bona idea no treballar en literal
 const COOKIE_LAST_VISIT = "last_visit_date";
-
+require_once "src/FlashMessage.php";
 
 
 // we get the current cookie value
