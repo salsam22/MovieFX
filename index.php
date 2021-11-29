@@ -2,9 +2,12 @@
 declare(strict_types=1);
 
 
+require 'src/FlashMessage.php';
+require 'src/Registry.php';
+
 // es bona idea no treballar en literal
 const COOKIE_LAST_VISIT = "last_visit_date";
-require_once "src/FlashMessage.php";
+
 
 
 // we get the current cookie value
@@ -55,28 +58,29 @@ require "src/Movie.php";
 require "src/User.php";
 // ara obtindrem les pel·lícules de la BD
 // require "movies.inc.php";
-
+/*
 echo "<h2>Activitat 501</h2>";
 echo "<p>$message</p>";
 
 echo "<h2>Activitat 504</h2>";
 echo "<p>$messageSession</p>";
 
-$message = FlashMessage::get("message");
-if (!empty($message)) {
+if (!empty($_SESSION["message"])) {
     echo "<h2>Activitat 507</h2>";
-    echo "<p>$message</p>";
+    echo "<p>{$_SESSION["message"]}</p>";
+    unset ($_SESSION["message"]);
 }
+*/
 
 
-
-$pdo = new PDO("mysql:host=mysql-server;dbname=movieFX;charset=utf8", "dbuser", "1234");
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo = Registry::get("PDO");
 
 $moviesStmt = $pdo->prepare("SELECT * FROM movie");
 $moviesStmt->setFetchMode(PDO::FETCH_ASSOC);
 $moviesStmt->execute();
 
+$logger = Registry::get(Registry::LOGGER);
+$logger->info("S'ha executat la consulta");
 // fetchAll tornarà un array les dades de pel·lícules en un altre array
 // caldrà mapejar les dades
 $moviesAr = $moviesStmt->fetchAll();
@@ -92,6 +96,7 @@ foreach ($moviesAr as $movieAr) {
     $movies[] = $movie;
 }
 
+/*
 // treballaré en l'última película
 echo "La pel·lícula {$movie->getTitle()} té una valoració de {$movie->getRating()}";
 
@@ -101,13 +106,10 @@ $value = 5;
 
 echo "<p>L'usuari {$user->getUsername()} la valora en $value punts</p>";
 
-$user->rate($movie, $value);
+//$user->rate($movie, $value);
 
 echo "<p>La pel·lícula {$movie->getTitle()} té ara una valoració de {$movie->getRating()}</p>";
+*/
+$message = FlashMessage::get("message");
 
-
-
-
-
-
-//require "views/index.view.php";
+require "views/index.view.php";

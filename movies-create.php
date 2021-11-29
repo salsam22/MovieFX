@@ -2,8 +2,7 @@
 <?php
 session_start();
 
-require_once "src/FlashMessage.php";
-require_once "bootstrap.php";
+
 //if (empty($_SESSION["user"]))
 //    die("<p><a href= \"login.php\">Login</a> or die!</p>");
 
@@ -14,20 +13,24 @@ require_once "bootstrap.php";
 // Cree funció clean per a netejar valors
 
 require "helpers.php";
+require_once 'src/FlashMessage.php';
+
 if (isPost())
     die("Aquest pàgina sols admet el mètode GET");
 
 
 const MAX_SIZE = 1024*1000;
 
+$data = FlashMessage::get("data", []);
 
+if (empty($data)) {
     $data["title"] = "";
     $data["release_date"] = "";
     $data["overview"] = "";
     $data["poster"] = "";
     $data["rating"] = 0;
+}
 
-$data = FlashMessage::get("data", $data);
 $errors = FlashMessage::get("errors", []);
 
 /*
@@ -42,5 +45,4 @@ $formToken =  bin2hex(random_bytes(16));
 // sempre que es mostre el formulari caldrà emmagatzemar el token
 // en aquest cas sempre que es sol·licite la pàgina
 FlashMessage::set("token", $formToken);
-
 require "views/movies-create.view.php";

@@ -5,11 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdeba43c-6b82-4f11-8db0-edf8efda36e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UploadedFileHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bootstrap.php" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies-create.php" beforeDir="false" afterPath="$PROJECT_DIR$/movies-create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies-edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/movies-edit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies-store.php" beforeDir="false" afterPath="$PROJECT_DIR$/movies-store.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/php.Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/php.Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/FileUploadException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/FileUploadException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/InvalidEmailValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/InvalidEmailValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/InvalidKeyValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/InvalidKeyValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/InvalidPhoneValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/InvalidPhoneValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/InvalidTypeFileException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/InvalidTypeFileException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/NoUploadedFileException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/NoUploadedFileException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/RequiredValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/RequiredValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/TooBigFileException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/TooBigFileException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/TooLongValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/TooLongValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/TooShortValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/TooShortValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Exceptions/ValidationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exceptions/ValidationException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FlashMessage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/FlashMessage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Registry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Registry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UploadedFileHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/UploadedFileHandler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/movies-create.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/movies-create.view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +57,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -52,6 +73,7 @@
       <workItem from="1637778626331" duration="1379000" />
       <workItem from="1637792165915" duration="70000" />
       <workItem from="1637921627415" duration="5597000" />
+      <workItem from="1638181270960" duration="2394000" />
     </task>
     <servers />
   </component>

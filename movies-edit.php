@@ -12,9 +12,9 @@ require "helpers.php";
 require 'src/Exceptions/FileUploadException.php';
 require_once 'src/Exceptions/NoUploadedFileException.php';
 require_once 'src/Movie.php';
-require_once "src/Registry.php";
-require "bootstrap.php";
-require_once "src/UploadedFileHandler.php";
+require_once 'src/UploadedFileHandler.php';
+require_once 'src/Registry.php';
+require_once 'bootstrap.php';
 
 const MAX_SIZE = 1024*1000;
 
@@ -31,7 +31,8 @@ if (!empty($idTemp))
 else
     throw new Exception("Id Invalid");
 
-$pdo = Registry::get("PDO");
+$pdo = new PDO("mysql:host=mysql-server;dbname=movieFX;charset=utf8", "dbuser", "1234");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $moviesStmt = $pdo->prepare("SELECT * FROM movie WHERE id=:id");
 $moviesStmt->bindValue("id", $id);
@@ -85,19 +86,21 @@ if (isPost()) {
         $errors[] = "El rating ha de ser un enter entre 1 i 5";*/
 
     try {
-        $uploadedFileHandler = new UploadedFileHandler("poster", $validTypes, MAX_SIZE);
-        $data["poster"] = $uploadedFileHandler->handler(Movie::POSTER_PATH);
-    }catch (NoUploadFileException $e) {
-        // LA CAPTURA I NO FA RES PERQUE ES UNA OPCIO VALIDA
-    } catch (FileUploadException $e) {
+
+        $uploadedFileHandler = new UploadedFileHandler("poster", ["image/jpeg"], MAX_SIZE);
+        $data["poster"] = $uploadedFileHandler->handle("posters");
+
+    }
+    catch (NoUploadedFileException $e) {
+        // no faig res perquè és una opció vàlida en UPDATE.
+    }
+    catch (FileUploadException $e) {
         $errors[] = $e->getMessage();
     }
 }
 
 if (isPost() && empty($errors)) {
     $pdo = Registry::get("PDO");
-    $pdo->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, 'SET NAMES utf8');
-
 
     $moviesStmt = $pdo->prepare("UPDATE movie 
                             set title = :title, 
