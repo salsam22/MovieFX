@@ -1,13 +1,19 @@
 <?php
-require "vendor/autoload.php";
-require_once 'src/Registry.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+require "Activitat 604/Config.php";
+$Config = new Config();
+$DSNArray = $Config->leerArchivo();
 
-$pdo = new PDO("mysql:host=mysql-server;dbname=movieFX;charset=utf8;user=root;password=secret");
+$mysql = $DSNArray["DSN"]["host"];
+$dbname = $DSNArray["DSN"]["dbname"];
+$charset = $DSNArray["DSN"]["charset"];
+$user = $DSNArray["DSN"]["user"];
+$password = $DSNArray["DSN"]["password"];
+
+$pdo = new PDO("mysql:host=$mysql;dbname=$dbname;charset=$charset","$user", "$password");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 
 Registry::set("PDO", $pdo);
 

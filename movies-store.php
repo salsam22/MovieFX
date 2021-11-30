@@ -20,7 +20,7 @@ require_once 'src/UploadedFileHandler.php';
 require_once 'src/Registry.php';
 
 require_once 'bootstrap.php';
-
+use Webmozart\Assert\Assert;
 const MAX_SIZE = 1024 * 1000;
 
 $data["title"] = "";
