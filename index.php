@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
+use App\Movie;
+use App\Registry;
+use App\FlashMessage;
 
-require 'src/FlashMessage.php';
-require 'src/Registry.php';
-
+require_once "bootstrap.php";
 // es bona idea no treballar en literal
 const COOKIE_LAST_VISIT = "last_visit_date";
 
@@ -54,8 +55,7 @@ else
 $_SESSION["visits"][] = time();
 
 
-require "src/Movie.php";
-require "src/User.php";
+
 // ara obtindrem les pel·lícules de la BD
 // require "movies.inc.php";
 /*

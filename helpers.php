@@ -1,9 +1,11 @@
 <?php
-require_once "src/Exceptions/ValidationException.php";
-require_once "src/Exceptions/RequiredValidationException.php";
-require_once "src/Exceptions/TooShortValidationException.php";
-require_once "src/Exceptions/TooLongValidationException.php";
 
+use App\Exceptions\InvalidEmailValidationException;
+use App\Exceptions\InvalidKeyValidationException;
+use App\Exceptions\InvalidPhoneValidationException;
+use App\Exceptions\RequiredValidationException;
+use App\Exceptions\TooLongValidationException;
+use App\Exceptions\TooShortValidationException;
 
 function clean(string $value): string
 {

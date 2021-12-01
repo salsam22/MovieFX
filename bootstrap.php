@@ -1,7 +1,14 @@
 <?php
 
+require "vendor/autoload.php";
+
+use App\Registry;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Handler\FirePHPHandler;
+
+require_once "src/Registry.php";
+
 require "Activitat 604/Config.php";
 $Config = new Config();
 $DSNArray = $Config->leerArchivo();

@@ -1,4 +1,5 @@
 <?php
+namespace App;
 class UploadedFileHandler {
     private array $uploadedFile;
     private int $maxSize;

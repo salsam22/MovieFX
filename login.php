@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Exceptions\ValidationException;
+
 session_start();
 
 // es bona idea no treballar en literal
@@ -16,9 +18,11 @@ $usernameAux = filter_input(INPUT_COOKIE, COOKIE_USERNAME, FILTER_SANITIZE_SPECI
 if (!empty($usernameAux))
     $username = $usernameAux;
 
-require 'helpers.php';
 
 // en esta funció simule el login
+/**
+ * @throws Exception
+ */
 function login($username, $password): bool
 {
     return (random_int(0, 1) === 1);

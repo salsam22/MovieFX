@@ -7,12 +7,7 @@
 // Acumularé els errors en un array per a mostrar-los al final.
 // Use la sintaxi alternativa de les estructures de control per a la part de vistes.
 // Cree funció clean per a netejar valors
-
-require "helpers.php";
-require 'src/Exceptions/FileUploadException.php';
-require_once 'src/Exceptions/NoUploadedFileException.php';
-require_once 'src/Movie.php';
-
+require "bootstrap.php";
 // En el cas de l'edició els valors inicials haurien de ser els de l'objecte a actualitzar, així
 // que caldria inicialitzar l'array $data  tant en l'opció de post com en la get
 

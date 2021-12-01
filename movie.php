@@ -1,12 +1,14 @@
 <?php
 declare(strict_types=1);
 
-require "src/Movie.php";
+
 
 //creem l'array d'objectes Movie
 //require "movies.inc.php";
 
 // inicialitze les variables que necessitaré.
+use App\Movie;
+
 $id = 0;
 $errors = [];
 $movie = null;

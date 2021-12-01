@@ -1,5 +1,6 @@
-<?php declare(strict_types=1); ?>
-<?php
+<?php declare(strict_types=1);
+
+use App\FlashMessage;
 session_start();
 
 
@@ -12,8 +13,7 @@ session_start();
 // Use la sintaxi alternativa de les estructures de control per a la part de vistes.
 // Cree funció clean per a netejar valors
 
-require "helpers.php";
-require_once 'src/FlashMessage.php';
+require "bootstrap.php";
 
 if (isPost())
     die("Aquest pàgina sols admet el mètode GET");
@@ -41,7 +41,10 @@ $errors = FlashMessage::get("errors", []);
 
 */
 
-$formToken =  bin2hex(random_bytes(16));
+try {
+    $formToken = bin2hex(random_bytes(16));
+} catch (Exception $e) {
+}
 // sempre que es mostre el formulari caldrà emmagatzemar el token
 // en aquest cas sempre que es sol·licite la pàgina
 FlashMessage::set("token", $formToken);

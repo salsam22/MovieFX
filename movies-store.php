@@ -10,17 +10,17 @@ session_start();
 // Use la sintaxi alternativa de les estructures de control per a la part de vistes.
 // Cree funció clean per a netejar valors
 
-require "helpers.php";
-require 'src/Exceptions/FileUploadException.php';
-require_once 'src/Exceptions/NoUploadedFileException.php';
-require_once 'src/Exceptions/InvalidTypeFileException.php';
-require_once 'src/Movie.php';
-require_once 'src/FlashMessage.php';
-require_once 'src/UploadedFileHandler.php';
-require_once 'src/Registry.php';
-
 require_once 'bootstrap.php';
-use Webmozart\Assert\Assert;
+
+use App\Exceptions\FileUploadException;
+use App\Exceptions\RequiredValidationException;
+use App\Exceptions\TooLongValidationException;
+use App\Exceptions\TooShortValidationException;
+use App\Exceptions\ValidationException;
+use App\FlashMessage;
+use App\Registry;
+use App\UploadedFileHandler;
+
 const MAX_SIZE = 1024 * 1000;
 
 $data["title"] = "";
@@ -52,14 +52,11 @@ if (empty($token) || ($_POST["token"] !== $token))
     die('Token invàlid');
 
 try {
-    if (validate_string($_POST["title"], 1, 100))
-        $data["title"] = clean($_POST["title"]);
+    \Webmozart\Assert\Assert::lengthBetween($_POST["title"], 1, 100, "Titol: grandaria incorrecta");
+    Assert::notWhitespaceOnly($_POST["title"], "Titol: sols conte espais.")
+    $data["title"] = clean($_POST["title"]);
 
 } catch (RequiredValidationException $e) {
-    $errors[] = "Error en validar el títol";
-} catch (TooLongValidationException $e) {
-    $errors[] = "Error en validar el títol";
-} catch (TooShortValidationException $e) {
     $errors[] = "Error en validar el títol";
 }
 

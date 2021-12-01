@@ -1,8 +1,11 @@
 <?php
 declare(strict_types=1);
+namespace App;
 
-require_once 'src/Exceptions/FileUploadException.php';
-require_once 'src/Exceptions/InvalidTypeFileException.php';
+use App\Exceptions\FileUploadException;
+use App\Exceptions\InvalidTypeFileException;
+use App\Exceptions\NoUploadedFileException;
+use App\Exceptions\TooBigFileException;
 
 class UploadedFileHandler
 {

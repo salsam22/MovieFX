@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 //namespace DesignPatterns\Structural\Registry;
-
+namespace App;
 //use InvalidArgumentException;
 
 abstract class Registry

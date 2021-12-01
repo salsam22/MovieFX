@@ -1,5 +1,7 @@
 <?php
 
+use App\Movie;
+
 $movie = new Movie();
 $movie->setId(1);
 $movie->setTitle("Eve");

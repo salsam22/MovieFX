@@ -1,6 +1,6 @@
 <?php
 
-
+namespace App\Exceptions;
 class InvalidPhoneValidationException extends ValidationException
 {
 

@@ -1,6 +1,14 @@
-<?php declare(strict_types=1); ?>
+<?php declare(strict_types=1);
 
-<?php
+use App\Exceptions\FileUploadException;
+use App\Exceptions\NoUploadedFileException;
+use App\Exceptions\RequiredValidationException;
+use App\Exceptions\TooLongValidationException;
+use App\Exceptions\TooShortValidationException;
+use App\Exceptions\ValidationException;
+use App\Registry;
+use App\UploadedFileHandler;
+use App\Movie;
 
 // Inicialitze les variables perquè existisquen en tots els possibles camins
 // Sols emmagatzameré en elles valors vàlids.
@@ -8,13 +16,8 @@
 // Use la sintaxi alternativa de les estructures de control per a la part de vistes.
 // Cree funció clean per a netejar valors
 
-require "helpers.php";
-require 'src/Exceptions/FileUploadException.php';
-require_once 'src/Exceptions/NoUploadedFileException.php';
-require_once 'src/Movie.php';
-require_once 'src/UploadedFileHandler.php';
-require_once 'src/Registry.php';
-require_once 'bootstrap.php';
+
+require 'bootstrap.php';
 
 const MAX_SIZE = 1024*1000;
 
