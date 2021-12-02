@@ -20,6 +20,7 @@ use App\Exceptions\ValidationException;
 use App\FlashMessage;
 use App\Registry;
 use App\UploadedFileHandler;
+use Webmozart\Assert\Assert;
 
 const MAX_SIZE = 1024 * 1000;
 
@@ -52,8 +53,8 @@ if (empty($token) || ($_POST["token"] !== $token))
     die('Token invàlid');
 
 try {
-    \Webmozart\Assert\Assert::lengthBetween($_POST["title"], 1, 100, "Titol: grandaria incorrecta");
-    Assert::notWhitespaceOnly($_POST["title"], "Titol: sols conte espais.")
+    Assert::lengthBetween($_POST["title"], 1, 100, "Titol: grandaria incorrecta");
+    Assert::notWhitespaceOnly($_POST["title"], "Titol: sols conte espais.");
     $data["title"] = clean($_POST["title"]);
 
 } catch (RequiredValidationException $e) {

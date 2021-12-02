@@ -86,14 +86,7 @@ $logger->info("S'ha executat la consulta");
 $moviesAr = $moviesStmt->fetchAll();
 
 foreach ($moviesAr as $movieAr) {
-    $movie = new Movie();
-    $movie->setId((int)$movieAr["id"]);
-    $movie->setTitle($movieAr["title"]);
-    $movie->setPoster($movieAr["poster"]);
-    $movie->setReleaseDate($movieAr["release_date"]);
-    $movie->setOverview($movieAr["overview"]);
-    $movie->setRating((float)$movieAr["rating"]);
-    $movies[] = $movie;
+    $movies[] = Movie::fromArray($movieAr);
 }
 
 /*

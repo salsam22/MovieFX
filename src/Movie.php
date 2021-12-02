@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
+
 namespace App;
+use Webmozart\Assert\Assert;
+
 class Movie
 {
     const POSTER_PATH = "posters";
-    public int $id;
+    public ?int $id;
     private string $title;
     private string $overview;
     private string $releaseDate;
@@ -13,17 +16,36 @@ class Movie
     private string $poster;
 
     /**
-     * @return int
+     * @param int $id
+     * @param string $title
+     * @param string $overview
+     * @param string $releaseDate
+     * @param float $rating
+     * @param string $poster
      */
-    public function getId(): int
+    public function __construct(?int $id, string $title, string $overview, string $releaseDate, float $rating, string $poster)
+    {
+        $this->id = $id;
+        $this->title = $title;
+        $this->overview = $overview;
+        $this->releaseDate = $releaseDate;
+        $this->rating = $rating;
+        $this->poster = $poster;
+    }
+
+
+    /**
+     * @return ?int
+     */
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param ?int $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
@@ -41,6 +63,7 @@ class Movie
      */
     public function setTitle(string $title): void
     {
+        Assert::lengthBetween($title, 1, 100);
         $this->title = $title;
     }
 
@@ -122,6 +145,19 @@ class Movie
     public function setVoters(int $voters): void
     {
         $this->voters = $voters;
+    }
+
+    public static function fromArray(array $raw)
+    {
+
+        return new Movie(
+            (int)$raw["id"],
+            $raw["title"],
+            $raw["overview"],
+            $raw["release_date"],
+            (float)$raw["rating"],
+            $raw["poster"]
+        );
     }
 
 }
