@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdeba43c-6b82-4f11-8db0-edf8efda36e9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Mapper/MovieMapper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/MovieRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies-store.php" beforeDir="false" afterPath="$PROJECT_DIR$/movies-store.php" afterDir="false" />
@@ -21,6 +23,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
     <include_path>
@@ -67,6 +72,8 @@
       <workItem from="1638301407906" duration="1113000" />
       <workItem from="1638348990374" duration="6351000" />
       <workItem from="1638428901104" duration="4194000" />
+      <workItem from="1638526316866" duration="1196000" />
+      <workItem from="1638527555097" duration="4792000" />
     </task>
     <servers />
   </component>

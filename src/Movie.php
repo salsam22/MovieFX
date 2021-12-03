@@ -25,12 +25,12 @@ class Movie
      */
     public function __construct(?int $id, string $title, string $overview, string $releaseDate, float $rating, string $poster)
     {
-        $this->id = $id;
-        $this->title = $title;
-        $this->overview = $overview;
-        $this->releaseDate = $releaseDate;
-        $this->rating = $rating;
-        $this->poster = $poster;
+        $this->setId($id);
+        $this->setTitle($title);
+        $this->setOverview($overview);
+        $this->setReleaseDate($releaseDate);
+        $this->setRating($rating);
+        $this->setPoster($poster);
     }
 
 
@@ -80,6 +80,7 @@ class Movie
      */
     public function setOverview(string $overview): void
     {
+        Assert::lengthBetween($overview, 1, 300);
         $this->overview = $overview;
     }
 
@@ -96,6 +97,9 @@ class Movie
      */
     public function setReleaseDate(string $releaseDate): void
     {
+        if (!validate_date($releaseDate)) {
+            throw new \WebMozart\Assert\InvalidArgumentException("date invalid");
+        }
         $this->releaseDate = $releaseDate;
     }
 
@@ -147,9 +151,13 @@ class Movie
         $this->voters = $voters;
     }
 
-    public static function fromArray(array $raw)
+    public static function fromArray(array $raw):Movie
     {
-
+        if (empty($data["id"])) {
+            $id = null;
+        } else {
+            $id = (int)$data["id"];
+        }
         return new Movie(
             (int)$raw["id"],
             $raw["title"],
@@ -158,6 +166,17 @@ class Movie
             (float)$raw["rating"],
             $raw["poster"]
         );
+    }
+
+    public function toArray():array {
+        return [
+            "id"=>$this->getId(),
+            "title"=>$this->getTitle(),
+            "overview"=>$this->getOverview(),
+            "release_date"=>$this->getReleaseDate(),
+            "rating" => $this->getRating(),
+            "poster" => $this->getPoster()
+        ];
     }
 
 }

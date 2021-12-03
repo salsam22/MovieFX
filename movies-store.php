@@ -18,12 +18,13 @@ use App\Exceptions\TooLongValidationException;
 use App\Exceptions\TooShortValidationException;
 use App\Exceptions\ValidationException;
 use App\FlashMessage;
+use App\Movie;
 use App\Registry;
 use App\UploadedFileHandler;
 use Webmozart\Assert\Assert;
 
 const MAX_SIZE = 1024 * 1000;
-
+$data["id"] = null;
 $data["title"] = "";
 $data["release_date"] = "";
 $data["overview"] = "";
@@ -52,42 +53,32 @@ $token = FlashMessage::get("token", "");
 if (empty($token) || ($_POST["token"] !== $token))
     die('Token invàlid');
 
-try {
-    Assert::lengthBetween($_POST["title"], 1, 100, "Titol: grandaria incorrecta");
-    Assert::notWhitespaceOnly($_POST["title"], "Titol: sols conte espais.");
-    $data["title"] = clean($_POST["title"]);
-
-} catch (RequiredValidationException $e) {
-    $errors[] = "Error en validar el títol";
-}
+$data["title"] = clean($_POST["title"]??"");
+$data["overview"] = clean($_POST["overview"]??"");
+$data["release_date"] = $_POST["release_date"];
+$ratingTemp = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT);
+$data["rating"] = $ratingTemp;
 
 try {
-    if (validate_string($_POST["overview"], 1, 1000))
-        $data["overview"] = clean($_POST["overview"]);
-
-} catch (ValidationException $e) {
-    $errors[] = "Error en validar la sinopsi";
-}
-
-
-if (!empty($_POST["release_date"]) && (validate_date($_POST["release_date"])))
-    $data["release_date"] = $_POST["release_date"];
-else
-    $errors[] = "Cal indicar una data correcta";
-
-
- try {
-
-    $uploadedFileHandler = new UploadedFileHandler("poster", ["image/jpeg"], MAX_SIZE);
-    $data["poster"] = $uploadedFileHandler->handle("posters");
+    $uploadedFileHandler = new UploadedFileHandler("poster", $validTypes, MAX_SIZE);
+    $data["poster"] = $uploadedFileHandler->handle(Movie::POSTER_PATH);
 
 } catch (FileUploadException $e) {
     $errors[] = $e->getMessage();
 }
 
+try {
+    $movie = Movie::fromArray($data);
+}
+catch (\Webmozart\Assert\InvalidArgumentException $e) {
+    $errors[]= $e->getMessage();
+}
 
 if (empty($errors)) {
-    $pdo = Registry::get(Registry::PDO);
+    $movieRepo = new MovieRepository();
+    $movieRepo->save($movie);
+
+    /*$pdo = Registry::get("PDO");
 
     $moviesStmt = $pdo->prepare("INSERT INTO movie(title, overview, release_date, rating, poster) 
         VALUES (:title, :overview, :release_date, :rating, :poster)");
@@ -96,12 +87,12 @@ if (empty($errors)) {
 
     if ($moviesStmt->rowCount() !== 1)
         $errors[] = "No s'ha pogut inserir el registre";
-    else {
-        $message = "S'ha inserit el registre amb el ID ({$pdo->lastInsertId("movie")})";
-        FlashMessage::set("message",  $message);
-        header("Location: index.php");
-        exit();
-    }
+    else {*/
+    $message = "S'ha inserit el registre amb el ID ({$movie->getId()})";
+    FlashMessage::set("message",  $message);
+    header("Location: index.php");
+    exit();
+
 
 }
 // com que si hi ha hagut èxit redirigirem a la pàgina principal plantegem ací el pitjor escenari.
