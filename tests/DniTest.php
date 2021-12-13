@@ -37,4 +37,28 @@ class DniTest extends TestCase {
         $this->expectException(\InvalidArgumentException::class);
         $dni = new Dni("00000000$");
     }
+    public function testShouldConstructValidDniEndingWithT():void {
+        $dni = new Dni("00000000T");
+        $this->assertEquals("00000000T", (string) $dni);
+    }
+    public function testShouldConstructValidDniEndingWithR():void {
+        $dni = new Dni("00000001R");
+        $this->assertEquals("00000001R", (string) $dni);
+    }
+    public function testShouldConstructValidDniEndingWithW():void {
+        $dni = new Dni("00000002W");
+        $this->assertEquals("00000002W", (string) $dni);
+    }
+    public function testShouldConstructValidNieStartingWithx() : void {
+        $dni = new Dni('X5148201L');
+        $this->assertEquals('X5148201L', (string) $dni);
+    }
+    public function testShouldConstructValidNieStartingWithY() : void {
+        $dni = new Dni('Y8104843W');
+        $this->assertEquals('Y8104843W', (string) $dni);
+    }
+    public function testShouldConstructValidNieStartingWithZ() : void {
+        $dni = new Dni('Z8313189M');
+        $this->assertEquals('Z8313189M', (string) $dni);
+    }
 }
