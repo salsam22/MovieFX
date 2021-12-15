@@ -18,7 +18,8 @@ class MovieRepository
     }
 
     public function find(int $id):?Movie {
-    }
+        return $this->mapper->find($id);
+   }
 
     public function findAll():array {
     }
