@@ -1,9 +1,10 @@
 <?php
 
 declare(strict_types=1);
-
+namespace App\Repository;
 use App\Mapper\MovieMapper;
 use App\Movie;
+
 
 class MovieRepository
 {
