@@ -1,26 +1,27 @@
 <?php
 declare(strict_types=1);
 
-//namespace DesignPatterns\Structural\Registry;
 namespace App;
-//use InvalidArgumentException;
+use Exception;
+use PDO;
 
 abstract class Registry
 {
-    public const LOGGER = 'LOGGER';
-    public const PDO = 'PDO';
+    public const LOGGER = "logger";
+    public const PDO = "PDO";
+    public const ROUTER = "router";
 
     /**
      * this introduces global state in your application which can not be mocked up for testing
      * and is therefore considered an anti-pattern! Use dependency injection instead!
      *
-     * @var Service[]
      */
     private static array $services = [];
 
     private static array $allowedKeys = [
         self::LOGGER,
-        self::PDO
+        self::PDO,
+        self::ROUTER
     ];
 
     public static function set(string $key, $value)
@@ -39,7 +40,12 @@ abstract class Registry
         }
         return self::$services[$key];
     }
+    public static function setPDO(ConfigInterface $config) {
+        $pdo = new PDO($config->getDataSourceName());
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        static::set(self::PDO, $pdo);
+    }
     public static function getPDO() {
-
+        return static::get(self::PDO);
     }
 }

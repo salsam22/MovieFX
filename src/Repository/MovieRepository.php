@@ -9,13 +9,16 @@ use App\Movie;
 class MovieRepository
 {
     public MovieMapper $mapper;
-    public function __construct(MovieMapper $mapper)
-    {
+    public function __construct(MovieMapper $mapper) {
         $this->mapper = $mapper;
     }
 
     public function save(Movie $movie) {
-        $this->mapper->insert($movie);
+        if ($movie->getId()!==null) {
+            $this->mapper->update();
+        } else {
+            $this->mapper->insert();
+        }
     }
 
     public function find(int $id):?Movie {
@@ -23,9 +26,6 @@ class MovieRepository
    }
 
     public function findAll():array {
-    }
-
-    public function delete(Movie $movie) {
-
+        return $this->mapper->findAll();
     }
 }

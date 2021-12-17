@@ -6,13 +6,11 @@ use App\Movie;
 use App\Registry;
 use PDO;
 
-class MovieMapper
-{
-    private PDO $pdo;
+class MovieMapper {
+    protected PDO $pdo;
 
-    public function __construct()
-    {
-        $this->pdo = Registry::get("PDO");
+    public function __construct() {
+        $this->pdo = Registry::getPDO();
     }
 
     public function find(int $id): ?Movie
