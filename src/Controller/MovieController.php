@@ -1,54 +1,80 @@
 <?php
-declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Response;
 use App\Exceptions\FileUploadException;
-use App\Exceptions\InvalidTypeFileException;
 use App\Exceptions\NoUploadedFileException;
-use App\Exceptions\TooBigFileException;
 use App\FlashMessage;
 use App\Movie;
 use App\Registry;
 use App\Repository\MovieRepository;
 use App\UploadedFileHandler;
 
-class MovieController {
-    const MAX_SIZE = 1024*1000;
+class MovieController
+{
+    const MAX_SIZE = 1024 * 1000;
     private MovieRepository $movieRepository;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->movieRepository = new MovieRepository();
     }
 
-    public function list() {
+    public function list(): Response
+    {
         $message = FlashMessage::get("message");
+
         $movies = $this->movieRepository->findAll();
+
         $logger = Registry::get(Registry::LOGGER);
-        $logger->info("S'ha executat una consulta");
-        require __DIR__ . "/../../views/index.view.php";
+        $logger->info("s'ha executat una consulta");
+
+        $response = new Response();
+        $response->setView("index")->setData(compact("message", "movies", "logger"));
+        return $response;
+
     }
 
-    public function edit(int $id) {
-        $movie = $this->movieRepository->find();
+    public function edit(int $id)
+    {
+        //die("editant la pel·licula $id");
+
+        // $id = $_POST["id"]?? $_GET["id"] ?? null;
+
+        //if (empty($id))
+        //    throw new Exception("Id Invalid");
+        //else
+        //    $id = (int)$id;
+
+        $message = "";
+        $movie = $this->movieRepository->find($id);
         $data = $movie->toArray();
-        if (empty($data)) {
+
+        //var_dump($data);
+        if (empty($data))
             throw new \Exception("La pel·lícula seleccionada no existeix");
-        }
+
+
         $validTypes = ["image/jpeg", "image/jpg"];
+
         $errors = [];
+
+        // per a la vista necessitem saber si s'ha processat el formulari
         if (isPost()) {
             $data["title"] = clean($_POST["title"]);
             $data["overview"] = clean($_POST["overview"]);
             $data["release_date"] = $_POST["release_date"];
             try {
-                $uploadFileHandler = new UploadedFileHandler("poster", ["image/jpeg"], self::MAX_SIZE);
-                $data["poster"] = $uploadFileHandler->handle("poster");
+                $uploadedFileHandler = new UploadedFileHandler("poster", ["image/jpeg"], self::MAX_SIZE);
+                $data["poster"] = $uploadedFileHandler->handle("posters");
+
             } catch (NoUploadedFileException $e) {
-                //No es fa res perque es valid
+                // no faig res perquè és una opció vàlida en UPDATE.
             } catch (FileUploadException $e) {
                 $errors[] = $e->getMessage();
             }
+
             if (empty($errors)) {
                 try {
                     $movie = Movie::fromArray($data);
@@ -57,8 +83,13 @@ class MovieController {
                 } catch (\Exception $e) {
                     $errors[] = $e->getMessage();
                 }
+
             }
         }
-        require __DIR__ . "/../../views/movies-edit.view.php";
+        $response = new Response();
+        $response->setView("movie-edit");
+        $response->setData(compact("message", "errors", "data", "movie"));
+        require __DIR__ ."/../../views/movies-edit.view.php";
+
     }
 }
