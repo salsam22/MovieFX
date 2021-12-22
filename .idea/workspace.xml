@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fdeba43c-6b82-4f11-8db0-edf8efda36e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/layouts/default.layout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MovieFX.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MovieFX.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MovieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MovieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Response.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +142,7 @@
       <workItem from="1639641730941" duration="2528000" />
       <workItem from="1639735992430" duration="5479000" />
       <workItem from="1639991152312" duration="6415000" />
+      <workItem from="1640163328969" duration="3177000" />
     </task>
     <servers />
   </component>

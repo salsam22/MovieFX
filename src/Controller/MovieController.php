@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Mapper\MovieMapper;
 use App\Response;
 use App\Exceptions\FileUploadException;
 use App\Exceptions\NoUploadedFileException;
@@ -18,7 +19,8 @@ class MovieController
 
     public function __construct()
     {
-        $this->movieRepository = new MovieRepository();
+        $mapper = new MovieMapper();
+        $this->movieRepository = new MovieRepository($mapper);
     }
 
     public function list(): Response
